@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://actors/tunnel/TunnelSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/rocket/Rocket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tests/TestTunnel/TestTunnel.cs" type="Script" id=3]
+[ext_resource path="res://actors/ui/GameHUD/GameHUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/ui/GameOverHUD/GameOverHUD.tscn" type="PackedScene" id=5]
+
+[node name="Root" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="TunnelSpawner" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.60616 )
+MaxAmount = 20
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+visible = false
+
+[node name="Rocket" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 2.5 )
+
+[node name="GameHUD" parent="." instance=ExtResource( 4 )]
+
+[node name="GameOverHUD" parent="." instance=ExtResource( 5 )]

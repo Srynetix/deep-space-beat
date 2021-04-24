@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/textures/light.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.211207 ), 0.0, 0.0, 0, 0, Vector2( 0.196629, 0.676724 ), 0.0, 0.0, 0, 0, Vector2( 0.522472, 0.306035 ), 0.0, 0.0, 0, 0, Vector2( 0.820225, 0.900862 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Starfield" type="CPUParticles"]
+amount = 256
+lifetime = 2.0
+preprocess = 1.0
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.25
+initial_velocity_random = 1.0
+scale_amount = 0.3
+scale_amount_curve = SubResource( 3 )
+hue_variation = 1.0
+hue_variation_random = 1.0
