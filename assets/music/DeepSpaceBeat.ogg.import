@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DeepSpaceBeat.ogg-ac8c2d40340436f308b6873ed235b9e2.oggstr"
+
+[deps]
+
+source_file="res://assets/music/DeepSpaceBeat.ogg"
+dest_files=[ "res://.import/DeepSpaceBeat.ogg-ac8c2d40340436f308b6873ed235b9e2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

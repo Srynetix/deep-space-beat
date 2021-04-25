@@ -17,7 +17,7 @@ font_data = ExtResource( 1 )
 size = 86
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=4]
 size = 86
 outline_size = 4
 outline_color = Color( 0.733333, 0, 1, 1 )
@@ -29,10 +29,14 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 82
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 118
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=8]
@@ -162,7 +166,7 @@ size_flags_vertical = 0
 [node name="Title" type="Label" parent="MarginContainer/TitleBar/HighScoresVBox"]
 margin_right = 178.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 4 )
 text = "Highscores"
 
 [node name="HS1HBox" type="HBoxContainer" parent="MarginContainer/TitleBar/HighScoresVBox"]
@@ -223,7 +227,6 @@ custom_fonts/font = SubResource( 5 )
 text = "10000"
 
 [node name="Instructions" type="VBoxContainer" parent="MarginContainer"]
-visible = false
 margin_left = 20.0
 margin_top = 275.0
 margin_right = 1260.0

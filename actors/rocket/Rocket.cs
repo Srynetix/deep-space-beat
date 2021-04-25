@@ -16,6 +16,7 @@ namespace LD48 {
         private CollisionShape CollisionShape;
         private InputHandler InputHandler;
         private Timer Timer;
+        private AudioStreamPlayer AudioExplosion;
 
         private Vector3 direction;
         private Transform initialMeshTransform;
@@ -31,6 +32,7 @@ namespace LD48 {
             EngineParticles = GetNode<CPUParticles>("Mesh/EngineParticles");
             CollisionShape = GetNode<CollisionShape>("CollisionShape");
             InputHandler = GetNode<InputHandler>("InputHandler");
+            AudioExplosion = GetNode<AudioStreamPlayer>("AudioExplosion");
             Timer = GetNode<Timer>("Timer");
 
             Timer.Connect("timeout", this, nameof(OnTimerTimeout));
@@ -105,6 +107,8 @@ namespace LD48 {
             if (exploded) {
                 return;
             }
+
+            AudioExplosion.Play();
 
             Timer.Stop();
             Starfield.LinearAccel = 0;

@@ -11,10 +11,10 @@ namespace LD48 {
         public delegate void Crashed(Tunnel tunnel);
 
         [Export]
-        public float AngularVelocity = 0.0f;
+        public float AngularVelocity;
 
         private CollisionShape TriggerZone;
-        private AudioStreamPlayer AudioStreamPlayer3D;
+        private AudioStreamPlayer AudioStreamPlayer;
         private Area Walls;
 
         private float sinT;
@@ -24,7 +24,7 @@ namespace LD48 {
         public override void _Ready()
         {
             TriggerZone = GetNode<CollisionShape>("TriggerZone");
-            AudioStreamPlayer3D = GetNode<AudioStreamPlayer>("AudioStreamPlayer3D");
+            AudioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
             Walls = GetNode<Area>("Walls");
 
             Connect("area_entered", this, nameof(OnAreaEntered));
@@ -59,6 +59,7 @@ namespace LD48 {
 
         private void OnAreaEntered(Area area) {
             if (area is Rocket rocket) {
+                AudioStreamPlayer.Play();
                 EmitSignal(nameof(ZoneTriggered), this);
             }
         }
