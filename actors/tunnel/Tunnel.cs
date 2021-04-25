@@ -59,8 +59,6 @@ namespace LD48 {
 
         private void OnAreaEntered(Area area) {
             if (area is Rocket rocket) {
-                rocket.Accelerate();
-                // AudioStreamPlayer3D.Play();
                 EmitSignal(nameof(ZoneTriggered), this);
             }
         }

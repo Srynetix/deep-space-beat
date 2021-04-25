@@ -5,7 +5,7 @@ namespace LD48 {
     public class Rocket : Area
     {
         [Export]
-        public float ForwardSpeed = 50;
+        public float ForwardSpeed = 100;
         [Export]
         public float RotationSpeed = 2;
 
@@ -14,6 +14,8 @@ namespace LD48 {
         private Starfield Starfield;
         private AnimationPlayer AnimationPlayer;
         private CollisionShape CollisionShape;
+        private InputHandler InputHandler;
+        private Timer Timer;
 
         private Vector3 direction;
         private Transform initialMeshTransform;
@@ -28,6 +30,10 @@ namespace LD48 {
             AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
             EngineParticles = GetNode<CPUParticles>("Mesh/EngineParticles");
             CollisionShape = GetNode<CollisionShape>("CollisionShape");
+            InputHandler = GetNode<InputHandler>("InputHandler");
+            Timer = GetNode<Timer>("Timer");
+
+            Timer.Connect("timeout", this, nameof(OnTimerTimeout));
 
             initialForwardSpeed = ForwardSpeed;
             initialMeshTransform = Mesh.Transform;
@@ -72,31 +78,20 @@ namespace LD48 {
         }
 
         private void HandleInput() {
-            direction = Vector3.Zero;
-
-            if (Input.IsActionPressed("move_up")) {
-                direction += Vector3.Up;
-            } else if (Input.IsActionPressed("move_down")) {
-                direction += Vector3.Down;
-            }
-
-            if (Input.IsActionPressed("move_left")) {
-                direction += Vector3.Left;
-            } else if (Input.IsActionPressed("move_right")) {
-                direction += Vector3.Right;
-            }
+            direction = Vector3.Right * InputHandler.XStrength + Vector3.Up * InputHandler.YStrength;
         }
 
         public void Start() {
             moving = true;
+            Timer.Start();
         }
 
         public float GetDepth() {
             return depth;
         }
 
-        public void Accelerate() {
-            ForwardSpeed += 1;
+        private void OnTimerTimeout() {
+            ForwardSpeed += 2;
         }
 
         async public Task Explode() {
@@ -106,6 +101,7 @@ namespace LD48 {
                 return;
             }
 
+            Timer.Stop();
             Starfield.LinearAccel = 0;
             CollisionShape.Disabled = true;
             exploded = true;

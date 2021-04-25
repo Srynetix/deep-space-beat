@@ -6,9 +6,9 @@ namespace LD48 {
     public class TunnelSpawner : Spatial
     {
         [Signal]
-        public delegate void ZoneTriggered(Tunnel tunnel);
+        public delegate void ZoneTriggered();
         [Signal]
-        public delegate void Crashed(Tunnel tunnel);
+        public delegate void Crashed();
 
         [Export]
         public int MaxAmount = 10;
@@ -16,6 +16,8 @@ namespace LD48 {
         public Vector2 OffsetRandomRange = new Vector2(-0.15f, 0.15f);
         [Export]
         public float RotatedProbability = 0.35f;
+        [Export]
+        public float CubeProbability = 0.20f;
 
         private Array<Tunnel> tunnels = new Array<Tunnel>();
 
@@ -85,6 +87,10 @@ namespace LD48 {
             } else {
                 SpawnNewTunnel();
             }
+
+            if (GD.Randf() <= CubeProbability) {
+                SpawnCube();
+            }
         }
 
         private void RemoveFirstTunnel() {
@@ -104,6 +110,18 @@ namespace LD48 {
             AddChild(instance);
         }
 
+        private Cube SpawnCube() {
+            var tunnelCount = tunnels.Count;
+            var prevId = tunnelCount - 1;
+            var lastTunnel = tunnels[prevId];
+            var cube = Cube.SpawnInstance();
+            cube.Connect(nameof(Cube.Crashed), this, nameof(OnCubeCrash));
+
+            lastTunnel.AddChild(cube);
+            cube.TranslateObjectLocal(new Vector3(0, 0, Tunnel.CYLINDER_LENGTH));
+            return cube;
+        }
+
         private void OnZoneTriggered(Tunnel tunnel) {
             RemoveFirstTunnel();
             SpawnNewRandomTunnel();
@@ -111,7 +129,11 @@ namespace LD48 {
         }
 
         private void OnCrash(Tunnel tunnel) {
-            EmitSignal(nameof(Crashed), tunnel);
+            EmitSignal(nameof(Crashed));
+        }
+
+        private void OnCubeCrash(Cube cube) {
+            EmitSignal(nameof(Crashed));
         }
     }
 }

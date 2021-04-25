@@ -5,22 +5,23 @@
 [ext_resource path="res://assets/sounds/warp.wav" type="AudioStream" id=3]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 20.0
+radius = 40.0
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0, 20, 40 )
+extents = Vector3( 0, 40, 40 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 0, 20, 40 )
+extents = Vector3( 0, 40, 40 )
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 0, 20, 40 )
+extents = Vector3( 0, 40, 40 )
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 0, 20, 40 )
+extents = Vector3( 0, 40, 40 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "init"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mesh:scale")
 tracks/0/interp = 1
@@ -28,7 +29,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.25, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 1, 0.01, 1 ), Vector3( 1, 1, 1 ) ]
@@ -53,19 +54,19 @@ volume_db = -80.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Walls"]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 20, 0 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 40, 0 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="Walls"]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -20, 0 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -40, 0 )
 shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

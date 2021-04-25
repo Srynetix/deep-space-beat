@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/meshes/cube/cube.glb" type="PackedScene" id=1]
+[ext_resource path="res://actors/cube/Cube.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/light.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.155172 ), 0.0, 0.0, 0, 0, Vector2( 0.247191, 0.525862 ), 0.0, 0.0, 0, 0, Vector2( 0.505618, 0.146552 ), 0.0300879, 0.0300879, 0, 0, Vector2( 0.735955, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SphereShape" id=4]
+radius = 5.0
+
+[node name="Cube" type="Area"]
+script = ExtResource( 2 )
+
+[node name="cube" parent="." instance=ExtResource( 1 )]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+visible = false
+amount = 16
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+radial_accel = -100.0
+radial_accel_random = 1.0
+damping = 1.0
+scale_amount = 3.0
+scale_amount_curve = SubResource( 3 )
+color = Color( 1, 0, 0, 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
