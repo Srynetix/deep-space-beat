@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Game-Over.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://actors/ui/GameHUD/GameHUD.cs" type="Script" id=2]
@@ -14,6 +14,82 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=3]
 size = 86
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 82
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 118
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/Instructions:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "instructions"
+length = 10.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/Instructions/Instructions1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 10, 10.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/Instructions/HBoxContainer/Instructions2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4, 10, 10.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MarginContainer/Instructions/HBoxContainer/Instructions3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 6, 7, 8, 9, 10, 10.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.945098, 0, 1, 1 ), Color( 1, 0.0470588, 0, 1 ), Color( 0, 0.32549, 0.784314, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MarginContainer/Instructions:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="GameHUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -58,3 +134,53 @@ margin_bottom = 50.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 3 )
 text = "m"
+
+[node name="Instructions" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 215.0
+margin_right = 1004.0
+margin_bottom = 384.0
+size_flags_vertical = 4
+
+[node name="Instructions1" type="Label" parent="MarginContainer/Instructions"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 984.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 4 )
+text = "Use the arrow keys to guide your ship through space
+and stay in the path."
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Instructions"]
+margin_top = 101.0
+margin_right = 984.0
+margin_bottom = 169.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Instructions2" type="Label" parent="MarginContainer/Instructions/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 140.0
+margin_top = 10.0
+margin_right = 397.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 4 )
+text = "Let's find what's"
+align = 1
+valign = 1
+
+[node name="Instructions3" type="Label" parent="MarginContainer/Instructions/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 417.0
+margin_right = 843.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 5 )
+text = "deeper and deeper !"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/init = SubResource( 7 )
+anims/instructions = SubResource( 6 )

@@ -10,7 +10,7 @@
 script = ExtResource( 3 )
 
 [node name="TunnelSpawner" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.60616 )
+MaxAmount = 6
 OffsetRandomRange = Vector2( -0.25, 0.25 )
 RotatedProbability = 0.25
 

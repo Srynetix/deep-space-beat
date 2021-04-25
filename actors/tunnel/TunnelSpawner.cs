@@ -59,7 +59,7 @@ namespace LD48 {
             var lastTunnel = tunnels[prevId];
             tunnel.AngularVelocity = RandomAngularVelocity();
             tunnel.Transform = lastTunnel.Transform;
-            tunnel.TranslateObjectLocal(new Vector3(0, 0, -Tunnel.CYLINDER_LENGTH));
+            tunnel.TranslateObjectLocal(new Vector3(0, 0, Tunnel.CYLINDER_LENGTH));
             tunnel.StoreInitialTransform();
             tunnel.Connect(nameof(Tunnel.ZoneTriggered), this, nameof(OnZoneTriggered));
             tunnel.Connect(nameof(Tunnel.Crashed), this, nameof(OnCrash));

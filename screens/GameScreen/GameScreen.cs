@@ -10,7 +10,7 @@ namespace LD48 {
 
         private bool gameOver;
 
-        public override void _Ready()
+        async public override void _Ready()
         {
             Rocket = GetNode<Rocket>("Rocket");
             TunnelSpawner = GetNode<TunnelSpawner>("TunnelSpawner");
@@ -20,6 +20,9 @@ namespace LD48 {
             GameOverHUD.Connect(nameof(GameOverHUD.TryAgain), this, nameof(TryAgain));
             TunnelSpawner.Connect(nameof(TunnelSpawner.Crashed), this, nameof(OnCrash));
             TunnelSpawner.Connect(nameof(TunnelSpawner.ZoneTriggered), this, nameof(OnZoneTriggered));
+
+            await GameHUD.ShowInstructions();
+            Rocket.Start();
         }
 
         public override void _Process(float delta)

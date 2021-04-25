@@ -19,6 +19,7 @@ namespace LD48 {
         private Transform initialMeshTransform;
         private float depth;
         private bool exploded;
+        private bool moving;
         private float initialForwardSpeed;
 
         public override void _Ready() {
@@ -34,8 +35,13 @@ namespace LD48 {
 
         public override void _Process(float delta)
         {
-            Translate(new Vector3(0, 0, -ForwardSpeed * delta));
-            HandleInput();
+            if (moving) {
+                HandleInput();
+                Translate(new Vector3(0, 0, -ForwardSpeed * delta));
+
+                // Calculate depth
+                depth += ForwardSpeed * delta;
+            }
 
             var targetMeshTransform = initialMeshTransform;
             var targetStarfieldTransform = Starfield.Transform;
@@ -63,9 +69,6 @@ namespace LD48 {
             Mesh.Transform = Mesh.Transform.InterpolateWith(targetMeshTransform, 0.1f);
             Starfield.Transform = Starfield.Transform.InterpolateWith(targetStarfieldTransform, 0.1f);
             Starfield.LinearAccel = (ForwardSpeed - initialForwardSpeed) / 100f;
-
-            // Calculate depth
-            depth += ForwardSpeed * delta;
         }
 
         private void HandleInput() {
@@ -82,6 +85,10 @@ namespace LD48 {
             } else if (Input.IsActionPressed("move_right")) {
                 direction += Vector3.Right;
             }
+        }
+
+        public void Start() {
+            moving = true;
         }
 
         public float GetDepth() {
