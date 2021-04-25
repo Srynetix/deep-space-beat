@@ -6,6 +6,8 @@ namespace LD48 {
     public class TunnelSpawner : Spatial
     {
         [Signal]
+        public delegate void ZoneTriggered(Tunnel tunnel);
+        [Signal]
         public delegate void Crashed(Tunnel tunnel);
 
         [Export]
@@ -57,7 +59,7 @@ namespace LD48 {
             tunnel.Transform = lastTunnel.Transform;
             tunnel.TranslateObjectLocal(new Vector3(0, 0, -Tunnel.CYLINDER_LENGTH));
             tunnel.StoreInitialTransform();
-            tunnel.Connect(nameof(Tunnel.ZoneTriggered), this, nameof(ZoneTriggered));
+            tunnel.Connect(nameof(Tunnel.ZoneTriggered), this, nameof(OnZoneTriggered));
             tunnel.Connect(nameof(Tunnel.Crashed), this, nameof(OnCrash));
 
             AddChild(tunnel);
@@ -100,9 +102,10 @@ namespace LD48 {
             AddChild(instance);
         }
 
-        private void ZoneTriggered(Tunnel tunnel) {
+        private void OnZoneTriggered(Tunnel tunnel) {
             RemoveFirstTunnel();
             SpawnNewRandomTunnel();
+            EmitSignal(nameof(ZoneTriggered), tunnel);
         }
 
         private void OnCrash(Tunnel tunnel) {

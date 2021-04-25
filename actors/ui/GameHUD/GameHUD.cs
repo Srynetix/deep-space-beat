@@ -11,7 +11,7 @@ namespace LD48 {
         }
 
         public void SetDepth(float value) {
-            DepthLabel.Text = value.ToString();
+            DepthLabel.Text = ((int)value).ToString();
         }
     }
 }

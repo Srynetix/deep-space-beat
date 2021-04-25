@@ -63,6 +63,9 @@ namespace LD48 {
             Mesh.Transform = Mesh.Transform.InterpolateWith(targetMeshTransform, 0.1f);
             Starfield.Transform = Starfield.Transform.InterpolateWith(targetStarfieldTransform, 0.1f);
             Starfield.LinearAccel = (ForwardSpeed - initialForwardSpeed) / 100f;
+
+            // Calculate depth
+            depth += ForwardSpeed * delta;
         }
 
         private void HandleInput() {
@@ -85,8 +88,7 @@ namespace LD48 {
             return depth;
         }
 
-        public void AddDepth(float value) {
-            depth += value;
+        public void Accelerate() {
             ForwardSpeed += 1;
         }
 

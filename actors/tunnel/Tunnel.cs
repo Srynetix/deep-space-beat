@@ -17,6 +17,7 @@ namespace LD48 {
         private AudioStreamPlayer AudioStreamPlayer3D;
         private Area Walls;
 
+        private float sinT;
         private Transform initialTransform;
         private static PackedScene packedScene;
 
@@ -32,7 +33,12 @@ namespace LD48 {
 
         public override void _Process(float delta)
         {
-            RotateObjectLocal(Vector3.Forward, AngularVelocity * delta);
+            var movement = AngularVelocity;
+            var sinDrive = 1 + Mathf.Sin(sinT * 13);
+
+            RotateObjectLocal(Vector3.Forward, movement * sinDrive * delta);
+
+            sinT += delta;
         }
 
         public static Tunnel SpawnInstance() {
@@ -44,7 +50,7 @@ namespace LD48 {
         }
 
         public void StoreInitialTransform() {
-            initialTransform = Transform; 
+            initialTransform = Transform;
         }
 
         public void ResetToInitialTransform() {
@@ -53,8 +59,8 @@ namespace LD48 {
 
         private void OnAreaEntered(Area area) {
             if (area is Rocket rocket) {
-                rocket.AddDepth(Tunnel.CYLINDER_LENGTH);
-                AudioStreamPlayer3D.Play();
+                rocket.Accelerate();
+                // AudioStreamPlayer3D.Play();
                 EmitSignal(nameof(ZoneTriggered), this);
             }
         }

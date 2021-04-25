@@ -19,12 +19,12 @@ namespace LD48 {
 
             GameOverHUD.Connect(nameof(GameOverHUD.TryAgain), this, nameof(TryAgain));
             TunnelSpawner.Connect(nameof(TunnelSpawner.Crashed), this, nameof(OnCrash));
+            TunnelSpawner.Connect(nameof(TunnelSpawner.ZoneTriggered), this, nameof(OnZoneTriggered));
         }
 
         public override void _Process(float delta)
         {
-            var rocketDepth = Rocket.GetDepth();
-            GameHUD.SetDepth(rocketDepth);
+            GameHUD.SetDepth(Rocket.GetDepth());
         }
 
         async private void OnCrash(Tunnel tunnel) {
@@ -36,6 +36,9 @@ namespace LD48 {
             await Rocket.Explode();
 
             GameOverHUD.Show(Rocket.GetDepth());
+        }
+
+        private void OnZoneTriggered(Tunnel tunnel) {
         }
 
         private void TryAgain() {
