@@ -1,7 +1,7 @@
 using Godot;
 
 namespace LD48 {
-    public class TestTunnel : Spatial
+    public class GameScreen : Spatial
     {
         private Rocket Rocket;
         private TunnelSpawner TunnelSpawner;
@@ -42,7 +42,7 @@ namespace LD48 {
         }
 
         private void TryAgain() {
-            TransitionManager.Global.TransitionToScene("res://tests/TestTunnel/TestTunnel.tscn");
+            TransitionManager.Global.TransitionToScene("res://screens/GameScreen/GameScreen.tscn");
         }
     }
 }

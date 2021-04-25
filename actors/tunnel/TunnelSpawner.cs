@@ -11,13 +11,11 @@ namespace LD48 {
         public delegate void Crashed(Tunnel tunnel);
 
         [Export]
-        public float MoveSpeed = -10.0f;
-        [Export]
         public int MaxAmount = 10;
         [Export]
-        public Vector2 OffsetRandomRange = new Vector2(-0.25f, 0.25f);
+        public Vector2 OffsetRandomRange = new Vector2(-0.15f, 0.15f);
         [Export]
-        public float RotatedProbability = 0.25f;
+        public float RotatedProbability = 0.35f;
 
         private Array<Tunnel> tunnels = new Array<Tunnel>();
 
@@ -43,11 +41,15 @@ namespace LD48 {
         private void SpawnFirstTunnel() {
             // Do not connect the first tunnel to let it live a little longer
             var firstTunnel = Tunnel.SpawnInstance();
-            firstTunnel.AngularVelocity = (float)GD.RandRange(-1, 1);
+            firstTunnel.AngularVelocity = RandomAngularVelocity();
             AddChild(firstTunnel);
             tunnels.Add(firstTunnel);
             firstTunnel.Connect(nameof(Tunnel.Crashed), this, nameof(OnCrash));
             firstTunnel.StoreInitialTransform();
+        }
+
+        private float RandomAngularVelocity() {
+            return (float)GD.RandRange(0.1f, 1f) * (GD.Randi() % 2 == 0 ? -1 : 1);
         }
 
         private Tunnel SpawnNewTunnel() {
@@ -55,7 +57,7 @@ namespace LD48 {
             var prevId = tunnelCount - 1;
             var tunnel = Tunnel.SpawnInstance();
             var lastTunnel = tunnels[prevId];
-            tunnel.AngularVelocity = (float)GD.RandRange(-1, 1);
+            tunnel.AngularVelocity = RandomAngularVelocity();
             tunnel.Transform = lastTunnel.Transform;
             tunnel.TranslateObjectLocal(new Vector3(0, 0, -Tunnel.CYLINDER_LENGTH));
             tunnel.StoreInitialTransform();

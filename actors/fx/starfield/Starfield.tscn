@@ -73,7 +73,6 @@ script = ExtResource( 2 )
 [node name="Lights" type="CPUParticles" parent="."]
 amount = 16
 lifetime = 5.0
-preprocess = 1.0
 mesh = SubResource( 5 )
 emission_shape = 1
 emission_sphere_radius = 30.0

@@ -23,10 +23,10 @@ extents = Vector3( 0, 20, 40 )
 script = ExtResource( 2 )
 
 [node name="Mesh" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -40 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1 )
 
 [node name="TriggerZone" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 40 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 80 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
@@ -34,6 +34,7 @@ stream = ExtResource( 3 )
 volume_db = -80.0
 
 [node name="Walls" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )

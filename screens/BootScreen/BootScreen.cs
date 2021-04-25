@@ -14,7 +14,7 @@ namespace LD48 {
             AnimationPlayer.Play("init");
             await ToSignal(AnimationPlayer, "animation_finished");
 
-            TransitionManager.Global.TransitionToScene("res://tests/TestTunnel/TestTunnel.tscn");
+            TransitionManager.Global.TransitionToScene("res://screens/GameScreen/GameScreen.tscn");
         }
     }
 }
