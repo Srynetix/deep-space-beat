@@ -11,8 +11,8 @@
 script = ExtResource( 3 )
 
 [node name="TunnelSpawner" parent="." instance=ExtResource( 1 )]
-MaxAmount = 6
 OffsetRandomRange = Vector2( -0.25, 0.25 )
+MaxAmount = 6
 RotatedProbability = 0.25
 
 [node name="Rocket" parent="." instance=ExtResource( 2 )]

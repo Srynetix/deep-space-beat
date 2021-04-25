@@ -50,9 +50,9 @@ __meta__ = {
 [node name="Godot" type="RichTextLabel" parent="BootScreenHUD/MarginContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 20.0
-margin_top = 125.0
-margin_right = 1004.0
-margin_bottom = 475.0
+margin_top = 185.0
+margin_right = 1260.0
+margin_bottom = 535.0
 rect_min_size = Vector2( 0, 350 )
 size_flags_vertical = 4
 custom_fonts/normal_font = SubResource( 1 )

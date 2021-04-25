@@ -137,7 +137,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1
 
 [node name="EngineParticles" type="CPUParticles" parent="Mesh"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.13791, 9.3451e-08 )
-emitting = false
 amount = 64
 preprocess = 1.0
 mesh = SubResource( 2 )
@@ -168,6 +167,7 @@ far = 1000.0
 [node name="Starfield" parent="." instance=ExtResource( 4 )]
 
 [node name="CrashParticles" type="CPUParticles" parent="."]
+emitting = false
 amount = 128
 lifetime = 0.5
 preprocess = 1.0
