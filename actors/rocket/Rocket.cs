@@ -5,12 +5,13 @@ namespace LD48 {
     public class Rocket : Area
     {
         [Export]
-        public float ForwardSpeed = 100;
+        public float ForwardSpeed = 50;
         [Export]
         public float RotationSpeed = 2;
 
         private Spatial Mesh;
-        private CPUParticles Starfield;
+        private CPUParticles EngineParticles;
+        private Starfield Starfield;
         private AnimationPlayer AnimationPlayer;
         private CollisionShape CollisionShape;
 
@@ -18,13 +19,16 @@ namespace LD48 {
         private Transform initialMeshTransform;
         private float depth;
         private bool exploded;
+        private float initialForwardSpeed;
 
         public override void _Ready() {
             Mesh = GetNode<Spatial>("Mesh");
-            Starfield = GetNode<CPUParticles>("Starfield");
+            Starfield = GetNode<Starfield>("Starfield");
             AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+            EngineParticles = GetNode<CPUParticles>("Mesh/EngineParticles");
             CollisionShape = GetNode<CollisionShape>("CollisionShape");
 
+            initialForwardSpeed = ForwardSpeed;
             initialMeshTransform = Mesh.Transform;
         }
 
@@ -55,9 +59,10 @@ namespace LD48 {
                 targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Up, RotationSpeed * 0.025f);
                 RotateObjectLocal(Vector3.Up, -RotationSpeed * delta);
             }
-            
+
             Mesh.Transform = Mesh.Transform.InterpolateWith(targetMeshTransform, 0.1f);
             Starfield.Transform = Starfield.Transform.InterpolateWith(targetStarfieldTransform, 0.1f);
+            Starfield.LinearAccel = (ForwardSpeed - initialForwardSpeed) / 100f;
         }
 
         private void HandleInput() {
@@ -68,7 +73,7 @@ namespace LD48 {
             } else if (Input.IsActionPressed("move_down")) {
                 direction += Vector3.Down;
             }
-            
+
             if (Input.IsActionPressed("move_left")) {
                 direction += Vector3.Left;
             } else if (Input.IsActionPressed("move_right")) {
@@ -82,37 +87,21 @@ namespace LD48 {
 
         public void AddDepth(float value) {
             depth += value;
+            ForwardSpeed += 1;
         }
 
         async public Task Explode() {
+            SetProcess(false);
+
             if (exploded) {
                 return;
             }
 
-            SetProcess(false);
+            Starfield.LinearAccel = 0;
             CollisionShape.Disabled = true;
             exploded = true;
             AnimationPlayer.Play("explode");
             await ToSignal(AnimationPlayer, "animation_finished");
         }
-
-        // private void LimitPosition() {
-        //     var halfRadius = MovementRadiusLimit / 2;
-        //     var origin = Transform.origin;
-
-        //     if (Transform.origin.x > halfRadius) {
-        //         origin.x = halfRadius;
-        //     } else if (Transform.origin.x < -halfRadius) {
-        //         origin.x = -halfRadius;
-        //     }
-
-        //     if (Transform.origin.z > halfRadius) {
-        //         origin.z = halfRadius;
-        //     } else if (Transform.origin.z < -halfRadius) {
-        //         origin.z = -halfRadius;
-        //     }
-
-        //     Transform = new Transform(Transform.basis, origin);
-        // }
     }
 }

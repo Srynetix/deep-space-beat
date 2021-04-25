@@ -7,7 +7,7 @@ namespace LD48 {
         private TunnelSpawner TunnelSpawner;
         private GameHUD GameHUD;
         private GameOverHUD GameOverHUD;
-        
+
         private bool gameOver;
 
         public override void _Ready()
@@ -16,14 +16,15 @@ namespace LD48 {
             TunnelSpawner = GetNode<TunnelSpawner>("TunnelSpawner");
             GameHUD = GetNode<GameHUD>("GameHUD");
             GameOverHUD = GetNode<GameOverHUD>("GameOverHUD");
-            
+
             GameOverHUD.Connect(nameof(GameOverHUD.TryAgain), this, nameof(TryAgain));
             TunnelSpawner.Connect(nameof(TunnelSpawner.Crashed), this, nameof(OnCrash));
         }
 
         public override void _Process(float delta)
         {
-            GameHUD.SetDepth(Rocket.GetDepth());
+            var rocketDepth = Rocket.GetDepth();
+            GameHUD.SetDepth(rocketDepth);
         }
 
         async private void OnCrash(Tunnel tunnel) {
@@ -38,7 +39,7 @@ namespace LD48 {
         }
 
         private void TryAgain() {
-            GetTree().ReloadCurrentScene();
+            TransitionManager.Global.TransitionToScene("res://tests/TestTunnel/TestTunnel.tscn");
         }
     }
 }

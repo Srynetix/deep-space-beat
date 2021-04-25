@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Ludum Dare 48"
-run/main_scene="res://tests/TestTunnel/TestTunnel.tscn"
+run/main_scene="res://screens/BootScreen/BootScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+TransitionManager="*res://autoloads/TransitionManager/TransitionManager.tscn"
 
 [global]
 

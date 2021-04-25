@@ -3,6 +3,8 @@ using Godot;
 namespace LD48 {
     public class Tunnel : Area
     {
+        public const float CYLINDER_LENGTH = 80.0f;
+
         [Signal]
         public delegate void ZoneTriggered(Tunnel tunnel);
         [Signal]
@@ -51,7 +53,7 @@ namespace LD48 {
 
         private void OnAreaEntered(Area area) {
             if (area is Rocket rocket) {
-                rocket.AddDepth(40);
+                rocket.AddDepth(Tunnel.CYLINDER_LENGTH);
                 AudioStreamPlayer3D.Play();
                 EmitSignal(nameof(ZoneTriggered), this);
             }
