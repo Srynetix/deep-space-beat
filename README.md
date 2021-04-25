@@ -1,4 +1,4 @@
-# Ludum Dare 48
+# Deep Space Beat - Ludum Dare 48
 
 **Theme**: Deeper and deeper
 
