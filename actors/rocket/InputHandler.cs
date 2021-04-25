@@ -5,30 +5,46 @@ namespace LD48 {
         public float XStrength;
         public float YStrength;
 
-        private bool isAndroid;
+        private VirtualKeys VirtualKeys;
 
         public override void _Ready()
         {
-            isAndroid = OS.GetName() == "Android";
+            VirtualKeys = GetNode<VirtualKeys>("VirtualKeys");
+            VirtualKeys.Connect(nameof(VirtualKeys.Pressed), this, nameof(OnVirtualKeyPressed));
+            VirtualKeys.Connect(nameof(VirtualKeys.Released), this, nameof(OnVirtualKeyReleased));
         }
 
         public override void _Process(float delta)
         {
-            XStrength = 0;
-            YStrength = 0;
-
-            if (isAndroid) {
-                useAccelerometer();
-            } else {
+            if (OS.GetName() != "Android") {
                 useActions();
             }
         }
 
-        private void useAccelerometer() {
+        private void OnVirtualKeyPressed(string key) {
+            if (key == "up") {
+                YStrength = 1;
+            } else if (key == "down") {
+                YStrength = -1;
+            } else if (key == "left") {
+                XStrength = -1;
+            } else if (key == "right") {
+                XStrength = 1;
+            }
+        }
 
+        private void OnVirtualKeyReleased(string key) {
+            if (key == "up" || key == "down") {
+                YStrength = 0;
+            } else if (key == "left" || key == "right") {
+                XStrength = 0;
+            }
         }
 
         private void useActions() {
+            XStrength = 0;
+            YStrength = 0;
+
             if (Input.IsActionPressed("move_left")) {
                 XStrength = -1;
             } else if (Input.IsActionPressed("move_right")) {

@@ -3,39 +3,39 @@
 [ext_resource path="res://assets/fonts/Game-Over.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://actors/ui/GameHUD/GameHUD.cs" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=1]
 size = 86
 outline_size = 4
 outline_color = Color( 0.733333, 0, 1, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=2]
 size = 120
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=3]
 size = 86
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=10]
 size = 86
 outline_size = 4
 outline_color = Color( 0.733333, 0, 1, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=5]
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 82
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 118
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("MarginContainer/Instructions:visible")
 tracks/0/interp = 1
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 length = 10.5
 step = 0.05
 tracks/0/type = "value"
@@ -133,7 +133,7 @@ custom_constants/separation = 10
 margin_right = 93.0
 margin_bottom = 50.0
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 1 )
 text = "Depth"
 
 [node name="Depth" type="Label" parent="MarginContainer/TitleBar/DepthHBox"]
@@ -141,7 +141,7 @@ margin_left = 103.0
 margin_right = 130.0
 margin_bottom = 69.0
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 
 [node name="Unit" type="Label" parent="MarginContainer/TitleBar/DepthHBox"]
@@ -149,7 +149,7 @@ margin_left = 140.0
 margin_right = 164.0
 margin_bottom = 50.0
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 3 )
 text = "m"
 
 [node name="HighScoresVBox" type="VBoxContainer" parent="MarginContainer/TitleBar"]
@@ -162,7 +162,7 @@ size_flags_vertical = 0
 [node name="Title" type="Label" parent="MarginContainer/TitleBar/HighScoresVBox"]
 margin_right = 178.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 10 )
 text = "Highscores"
 
 [node name="HS1HBox" type="HBoxContainer" parent="MarginContainer/TitleBar/HighScoresVBox"]
@@ -174,14 +174,14 @@ margin_bottom = 95.0
 margin_right = 94.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "AAA"
 
 [node name="Score" type="Label" parent="MarginContainer/TitleBar/HighScoresVBox/HS1HBox"]
 margin_left = 98.0
 margin_right = 178.0
 margin_bottom = 41.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "20000"
 
 [node name="HS2HBox" type="HBoxContainer" parent="MarginContainer/TitleBar/HighScoresVBox"]
@@ -193,14 +193,14 @@ margin_bottom = 140.0
 margin_right = 99.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "BBB"
 
 [node name="Score" type="Label" parent="MarginContainer/TitleBar/HighScoresVBox/HS2HBox"]
 margin_left = 103.0
 margin_right = 178.0
 margin_bottom = 41.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "15000"
 
 [node name="HS3HBox" type="HBoxContainer" parent="MarginContainer/TitleBar/HighScoresVBox"]
@@ -212,17 +212,18 @@ margin_bottom = 185.0
 margin_right = 99.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "CCC"
 
 [node name="Score" type="Label" parent="MarginContainer/TitleBar/HighScoresVBox/HS3HBox"]
 margin_left = 103.0
 margin_right = 178.0
 margin_bottom = 41.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 5 )
 text = "10000"
 
 [node name="Instructions" type="VBoxContainer" parent="MarginContainer"]
+visible = false
 margin_left = 20.0
 margin_top = 275.0
 margin_right = 1260.0
@@ -230,12 +231,11 @@ margin_bottom = 444.0
 size_flags_vertical = 4
 
 [node name="Instructions1" type="Label" parent="MarginContainer/Instructions"]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 1240.0
 margin_bottom = 97.0
-custom_fonts/font = SubResource( 4 )
-text = "Use the arrow keys to guide your ship through space
-and stay in the path."
+custom_fonts/font = SubResource( 6 )
+text = "Use the arrow keys to guide your ship through space,
+avoid obstacles and stay in the path."
 align = 1
 valign = 1
 
@@ -247,12 +247,12 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Instructions2" type="Label" parent="MarginContainer/Instructions/HBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.85 )
 margin_left = 268.0
 margin_top = 10.0
 margin_right = 525.0
 margin_bottom = 57.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Let's find what's"
 align = 1
 valign = 1
@@ -262,12 +262,12 @@ modulate = Color( 1, 1, 1, 0 )
 margin_left = 545.0
 margin_right = 971.0
 margin_bottom = 68.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 text = "deeper and deeper !"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "init"
-anims/init = SubResource( 9 )
-anims/instructions = SubResource( 10 )
+anims/init = SubResource( 8 )
+anims/instructions = SubResource( 9 )

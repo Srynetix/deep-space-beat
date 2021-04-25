@@ -51,25 +51,30 @@ namespace LD48 {
 
             var targetMeshTransform = initialMeshTransform;
             var targetStarfieldTransform = Starfield.Transform;
+            var d = 1;
 
             if (direction.y < 0) {
-                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Left, RotationSpeed * 0.25f);
-                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Left, -RotationSpeed * 0.025f);
-                RotateObjectLocal(Vector3.Left, RotationSpeed * delta);
+                // var d = Mathf.Abs(InputHandler.YStrength);
+                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Left, RotationSpeed * 0.25f * d);
+                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Left, -RotationSpeed * 0.025f * d);
+                RotateObjectLocal(Vector3.Left, RotationSpeed * delta * d);
             } else if (direction.y > 0) {
-                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Left, -RotationSpeed * 0.25f);
+                // var d = Mathf.Abs(InputHandler.YStrength);
+                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Left, -RotationSpeed * 0.25f * direction.y);
                 targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Left, RotationSpeed * 0.025f);
-                RotateObjectLocal(Vector3.Left, -RotationSpeed * delta);
+                RotateObjectLocal(Vector3.Left, -RotationSpeed * delta * d);
             }
 
             if (direction.x < 0) {
-                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Up, RotationSpeed * 0.25f);
-                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Up, -RotationSpeed * 0.025f);
-                RotateObjectLocal(Vector3.Up, RotationSpeed * delta);
+                // var d = Mathf.Abs(InputHandler.XStrength);
+                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Up, RotationSpeed * 0.25f * d);
+                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Up, -RotationSpeed * 0.025f * d);
+                RotateObjectLocal(Vector3.Up, RotationSpeed * delta * d);
             } else if (direction.x > 0) {
-                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Up, -RotationSpeed * 0.25f);
-                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Up, RotationSpeed * 0.025f);
-                RotateObjectLocal(Vector3.Up, -RotationSpeed * delta);
+                // var d = Mathf.Abs(InputHandler.XStrength);
+                targetMeshTransform = targetMeshTransform.Rotated(Vector3.Up, -RotationSpeed * 0.25f * d);
+                targetStarfieldTransform = targetStarfieldTransform.Rotated(Vector3.Up, RotationSpeed * 0.025f * d);
+                RotateObjectLocal(Vector3.Up, -RotationSpeed * delta * d);
             }
 
             Mesh.Transform = Mesh.Transform.InterpolateWith(targetMeshTransform, 0.1f);
