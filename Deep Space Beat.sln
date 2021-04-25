@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludum Dare 48", "Ludum Dare 48.csproj", "{F53C5E62-5FF5-4AA2-847D-13267C4810B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deep Space Beat", "Deep Space Beat.csproj", "{F53C5E62-5FF5-4AA2-847D-13267C4810B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
