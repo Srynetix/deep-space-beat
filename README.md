@@ -6,4 +6,4 @@
 
 ![splash.png](./splash.png)
 
-**[Play it here!](https://srynetix.github.io/gamedev/ludumdare48/Deep%20Space%20Beat.html)** 
+**[:rocket: Play it here!](https://srynetix.github.io/deep-space-beat/)** 

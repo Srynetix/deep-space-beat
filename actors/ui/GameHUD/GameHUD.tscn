@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/Game-Over.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://actors/ui/GameHUD/GameHUD.cs" type="Script" id=2]
+[ext_resource path="res://actors/ui/GameHUD/GameHUD.gd" type="Script" id=2]
+[ext_resource path="res://addons/sxgd/modules/SxVirtualControls/SxVirtualJoystick.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/sxgd/modules/SxVirtualControls/SxVirtualControls.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -115,9 +117,6 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TitleBar" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
@@ -274,3 +273,29 @@ valign = 1
 autoplay = "init"
 anims/init = SubResource( 8 )
 anims/instructions = SubResource( 9 )
+
+[node name="SxVirtualControls" parent="." instance=ExtResource( 4 )]
+display_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SxVirtualControls"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -720.0
+margin_right = 1280.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="SxVirtualJoystick" parent="SxVirtualControls/MarginContainer" instance=ExtResource( 3 )]
+margin_left = 40.0
+margin_top = 424.0
+margin_right = 296.0
+margin_bottom = 680.0
+rect_min_size = Vector2( 256, 256 )
+size_flags_horizontal = 0
+size_flags_vertical = 12
+action_axis_left = "move_left"
+action_axis_right = "move_right"
+action_axis_up = "move_up"
+action_axis_down = "move_down"

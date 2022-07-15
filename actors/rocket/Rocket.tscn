@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/meshes/rocket/rocket.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/light.png" type="Texture" id=2]
-[ext_resource path="res://actors/rocket/Rocket.cs" type="Script" id=3]
+[ext_resource path="res://actors/rocket/Rocket.gd" type="Script" id=3]
 [ext_resource path="res://actors/fx/starfield/Starfield.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/GameEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://actors/rocket/InputHandler.tscn" type="PackedScene" id=6]
@@ -129,7 +129,7 @@ tracks/1/keys = {
 "values": [ Vector3( 1, 1, 1 ) ]
 }
 
-[node name="Rocket" type="Area"]
+[node name="Rocket" type="Area" groups=["rocket"]]
 script = ExtResource( 3 )
 
 [node name="Mesh" parent="." instance=ExtResource( 1 )]
