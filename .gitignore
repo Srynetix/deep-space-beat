@@ -11,3 +11,5 @@ data_*/
 # Exports
 exports/*
 !exports/.gdignore
+
+/.vscode
