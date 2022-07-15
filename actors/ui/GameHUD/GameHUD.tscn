@@ -275,7 +275,6 @@ anims/init = SubResource( 8 )
 anims/instructions = SubResource( 9 )
 
 [node name="SxVirtualControls" parent="." instance=ExtResource( 4 )]
-display_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="SxVirtualControls"]
 anchor_top = 1.0

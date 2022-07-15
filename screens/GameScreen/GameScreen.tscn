@@ -9,7 +9,6 @@
 
 [node name="GameScreen" type="Spatial"]
 script = ExtResource( 3 )
-skip_instructions = true
 
 [node name="TunnelSpawner" parent="." instance=ExtResource( 1 )]
 max_amount = 6
