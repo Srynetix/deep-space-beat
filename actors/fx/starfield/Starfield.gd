@@ -1,0 +1,2 @@
+extends CPUParticles
+class_name Starfield
