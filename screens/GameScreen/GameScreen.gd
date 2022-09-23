@@ -23,7 +23,7 @@ func _ready() -> void:
         if !GameState.load_temporary_value(SKIP_INSTRUCTIONS_KEY, false):
             yield(_game_hud.show_instructions(), "completed")
             GameState.store_temporary_value(SKIP_INSTRUCTIONS_KEY, true)
-    
+
     _rocket.start()
 
 func _process(_delta: float) -> void:
@@ -37,7 +37,7 @@ func _on_crash() -> void:
     yield(_rocket.explode(), "completed")
 
     var highscore_position = GameState.submit_score_to_list(PLAYER_NAME, int(_rocket.get_depth()))
-    _game_over_hud.show(highscore_position, int(_rocket.get_depth()))
+    _game_over_hud.show_hud(highscore_position, int(_rocket.get_depth()))
 
 func _try_again() -> void:
     GameSceneTransitioner.fade_to_cached_scene(GameLoadCache, "GameScreen")

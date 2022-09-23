@@ -7,7 +7,7 @@ export var movement_strength := 25.0
 export var movement_speed := 4.0
 
 onready var _mesh: MeshInstance = $cube/Icosphere001
-onready var _material: SpatialMaterial = _mesh.mesh.surface_get_material(0)
+onready var _material: SpatialMaterial = _mesh.get_surface_material(0)
 onready var _tween: Tween = $Tween
 
 var _sin_t := 0.0

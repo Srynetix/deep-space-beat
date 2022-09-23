@@ -20,12 +20,12 @@ onready var _highscore_position_label: Label = $Panel/MarginContainer/VBoxContai
 
 func _ready() -> void:
     _try_again_button.connect("pressed", self, "_emit_try_again");
-    hide()
+    hide_hud()
 
-func hide() -> void:
+func hide_hud() -> void:
     _panel.hide()
 
-func show(highscore_position: int, depth: float) -> void:
+func show_hud(highscore_position: int, depth: float) -> void:
     _distance_label.text = str(depth)
     _highscore_position_label.text = _get_highscore_position_label(highscore_position)
     _taunt_label.text = _choose_random_taunt_from_depth(highscore_position, depth)
@@ -45,13 +45,13 @@ func _get_highscore_position_label(highscore_position: int) -> String:
             return "2nd!"
         3:
             return "3rd!"
-    
+
     return ""
 
 func _choose_taunt_color_from_depth(highscore_position: int, depth: float) -> String:
     if highscore_position > 0:
         return "gold"
-    
+
     if depth < OK_LIMIT:
         return "red"
     elif depth < GREAT_LIMIT:
